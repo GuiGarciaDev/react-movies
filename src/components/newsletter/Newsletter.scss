@@ -1,0 +1,68 @@
+.Newsletter {
+    display: flex;
+    width: 80%;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+
+
+    .Newsletter-leftC {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        padding: 30px 40px;
+        background-color: rgb(184, 218, 241);
+        border-radius: 10px 0 0 10px;
+        
+        img {
+            width: 100%;
+        }
+    }
+ 
+    .Newsletter-rightC {
+        display: flex;
+        width: 60%;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 20px;
+        row-gap: 10px;
+
+        span {
+            font-size: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            column-gap: 5px;
+
+            input {
+                background-color: white;
+                border: none;
+                border-bottom: 1px solid blue;
+                padding: 0.5rem 1rem;
+                width: 100%;
+                transition: .5s linear;
+    
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+    
+            button {
+                padding: .5rem 1rem;
+                border: 1px solid blue;
+                border-radius: 7px;
+                background-color: white;
+                cursor: pointer;
+                background: linear-gradient(to left, white 50%, blue 50%) right;
+                background-size: 200% 100%;
+                transition: .3s linear;
+
+                &:hover {
+                    background-position: left;
+                }
+            }
+        }  
+    }
+}

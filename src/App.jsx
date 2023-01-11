@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss'
 import MovieCard from './components/movie-card/MovieCard';
+import Newsletter from './components/newsletter/Newsletter';
 
 const API_KEY = import.meta.env.VITE_API_KEY
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
@@ -29,8 +30,8 @@ export default function App() {
 
         <ul>
           <a href='#header'>Home</a>
-          <a href='#popular'>Releases</a>
-          <a href='#upcoming'>Hot</a>
+          <a href='#popular'>Popular</a>
+          <a href='#upcoming'>Upcoming</a>
         </ul>
       </header>
 
@@ -39,7 +40,7 @@ export default function App() {
       </section>
 
       <section id='popular'>
-        <h1>Popular</h1>
+        <span className='title'>Popular</span>
         <div className="popular-content">
           { popularMovies.map((movie, idx) => {
             return (
@@ -55,7 +56,7 @@ export default function App() {
       </section>
 
       <section id='upcoming'>
-        <h1>Upcoming</h1>
+        <span className='title'>Upcoming</span>
         <div className="upcoming-content">
           { latestMovies.map((movie, idx) => {
               return (
@@ -71,10 +72,7 @@ export default function App() {
       </section>
 
       <section id='newsletter'>
-        <h1>Join our newsletter</h1>
-        <div className="newsletter-content">
-
-        </div>
+        <Newsletter />
       </section>
 
       <footer>
