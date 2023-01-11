@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss'
 import MovieCard from './components/movie-card/MovieCard';
 import Newsletter from './components/newsletter/Newsletter';
+import { BsLinkedin, BsTwitter } from 'react-icons/bs'
 
 const API_KEY = import.meta.env.VITE_API_KEY
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
@@ -76,7 +77,21 @@ export default function App() {
       </section>
 
       <footer>
-
+        <div className="icons">
+          <span/>
+          <a href="https://www.linkedin.com/in/guilherme-garcia-a9890225a/" style={{color: '#0e76a8'}}><BsLinkedin /></a>
+          <a href="https://twitter.com/GuiGarciaDev" style={{color: '#1DA1F2'}}><BsTwitter /></a>
+          <span/>
+        </div>
+        <div className="information">
+          <h2>React Movies</h2>
+          <p>Made by @GuiGarciaDev</p>
+          <div className="anchors">
+            <span>Legal Information</span>
+            <span className="divider" />
+            <span>Privacy Policy</span>
+          </div>
+        </div>
       </footer>    
     </div>
   )
