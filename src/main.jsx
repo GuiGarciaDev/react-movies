@@ -13,5 +13,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/movies/:movieid' element={<MoviePage />}/>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

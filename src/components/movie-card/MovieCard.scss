@@ -14,7 +14,7 @@
         }
         
         span {
-            color: black;
+            color: var(--white);
             // Some animation
         }
     }
@@ -25,6 +25,7 @@
         border-radius: 10px;
         background-color: white;
         transition: .2s ease-in-out; 
+        z-index: 1;
     }
 
     span {
@@ -33,5 +34,11 @@
         font-size: 1.2rem;
         max-width: 80%;
         text-align: center;
+    }
+}
+
+@keyframes rotate {
+    0% {
+
     }
 }

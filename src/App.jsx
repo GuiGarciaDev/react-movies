@@ -3,6 +3,9 @@ import './App.scss'
 import MovieCard from './components/movie-card/MovieCard';
 import Newsletter from './components/newsletter/Newsletter';
 import { BsLinkedin, BsTwitter } from 'react-icons/bs'
+import TrendingDetails from './components/trending-details/TrendingDetails';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const API_KEY = import.meta.env.VITE_API_KEY
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
@@ -10,6 +13,7 @@ const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
 export default function App() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [latestMovies, setLatestMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([{}]);
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
@@ -20,9 +24,11 @@ export default function App() {
       .then(res => res.json())
       .then(data => setLatestMovies(data.results))
 
-  }, [])
+      fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`)
+      .then(res => res.json())
+      .then(data => setNowPlayingMovies(data.results))
 
-  console.log(latestMovies);
+  }, [])
 
   return (
     <div className="App">
@@ -37,22 +43,31 @@ export default function App() {
       </header>
 
       <section id='banners'>
-
+        <h1>Now on theaters</h1>
+        <div className="carousel-holder">
+          <Carousel swipeable={true} width={'100%'} dynamicHeight={true} showThumbs={false} infiniteLoop={true}>
+            { nowPlayingMovies.map((movie, idx) => {
+              return (
+                <TrendingDetails movie={movie} key={idx}/>
+              )
+            })}
+          </Carousel>
+        </div>
       </section>
 
       <section id='popular'>
         <span className='title'>Popular</span>
         <div className="popular-content">
           { popularMovies.map((movie, idx) => {
-            return (
-              <MovieCard 
-                title={movie.title} 
-                src={IMAGE_PATH + movie.poster_path} 
-                key={idx}
-                movieId={movie.id}
-              />
-            )
-          })}
+              return (
+                <MovieCard 
+                  title={movie.title} 
+                  src={IMAGE_PATH + movie.poster_path} 
+                  key={idx}
+                  movieId={movie.id}
+                />
+              )
+            })}
         </div>
       </section>
 

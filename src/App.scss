@@ -1,8 +1,9 @@
 .App {
     width: 100vw;
     height: 100vh;
-    background-color: #242424;
+    background-color: var(--black);
     overflow-y: auto;
+    color: var(--white);
 
     header {
         display: flex;
@@ -11,8 +12,7 @@
         padding: 10px 50px;
         width: 100%;
         height: 11%;
-        background-color: white;
-        color: black;
+        background-color: var(--blue); 
 
         ul {
             display: flex;
@@ -21,8 +21,28 @@
     }
 
     #banners {
-        background-color: grey;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
         height: calc(100vh - 11%);
+
+        h1 {
+            position: absolute;
+            top: 20px;           
+            z-index: 10;
+        }
+
+        .carousel-holder {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            // Carousel height fix
+            .carousel-root, .carousel, .carousel-slider, .slider-wrapper, .axis-horizontal, .slider, .animated  {
+                height: calc(100vh - 12%) !important
+            }
+        }
     }
 
     #popular, #upcoming {
@@ -33,7 +53,7 @@
         padding: 30px 60px 120px 60px;
         row-gap: 50px;
 
-        background-color: aqua;
+        background-color: transparent;
 
         .title {
             font-size: 2rem;
@@ -65,7 +85,6 @@
         align-items: center;
         row-gap: 30px;
         padding: 30px;
-        background-color: white;
 
         .icons {
             display: flex;
@@ -79,7 +98,7 @@
 
             span {
                 width: 40%;
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid var(--white);
             }
         }
 
@@ -100,7 +119,7 @@
 
                 .divider {
                     width: 1px;
-                    background-color: black;
+                    background-color: var(--white);
                     border-radius: 1px;
                 }
 
