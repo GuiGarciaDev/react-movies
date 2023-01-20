@@ -31,8 +31,6 @@ export default function MoviePage() {
     const score = Math.ceil(movie.vote_average * 10)
     const deg = percentToDeg(score)
 
-    console.log(movie);
-
     return (
         <div className="MoviePage">
             <section className='movieDetails' 

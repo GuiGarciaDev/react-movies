@@ -16,12 +16,6 @@ export default function MovieRating({ score, deg }) {
                     : <></>
     }, [score])
 
-   
-
-    // console.log(score);
-    // console.log(primary);
-    // console.log(secondary);
-
     return (
         <div className="MovieRating" style={{background: `conic-gradient( ${primary} ${deg}deg, ${secondary} 0deg)`}}>
             <div className="rating">
