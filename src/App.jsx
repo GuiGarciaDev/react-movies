@@ -8,7 +8,8 @@ import TrendingDetails from './components/trending-details/TrendingDetails';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const API_KEY = import.meta.env.VITE_API_KEY
+//const API_KEY = import.meta.env.VITE_API_KEY
+const API_KEY = process.env.API_KEY
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
 
 export default function App() {
