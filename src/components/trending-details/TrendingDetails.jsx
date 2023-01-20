@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getMovieGenres } from '../../utils/getMovieGenres';
 import { getMovieRuntime } from '../../utils/getMovieRuntime';
 import { percentToDeg } from '../../utils/percentToDeg';
 import MovieRating from '../movie-rating/MovieRating';
 import './TrendingDetails.scss'
+import { getDominantColor } from '../../utils/dominantColor';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
@@ -11,15 +12,21 @@ const BACKDROP_PATH = 'https://image.tmdb.org/t/p/original/'
 
 export default function TrendingDetails({ movie }) {
     const [movieDetails, setMovieDetails] = useState([{}]);
+    const image = useRef()
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}&language=en-US&page=1`)
             .then(res => res.json())
             .then(data => {
                 setMovieDetails(data)
+                // const rgb = getDominantColor(IMAGE_PATH + movie.poster_path);
+                // console.log(rgb)
+                // Later...
             })
-    }, [movie])
 
+            console.log(image.current);
+    }, [movie])
+    
     const title = movie.title
     const overview = movie.overview
     const year = movie.release_date ? movie.release_date.slice(0, 4) : 'Undefined'
@@ -34,7 +41,8 @@ export default function TrendingDetails({ movie }) {
         <div className="TrendingDetails" style={{backgroundImage: `url(${BACKDROP_PATH + backdrop_path})`}}>
             <div className='backdrop-gradient'>
                 <div className="leftColumn">
-                    <img src={IMAGE_PATH + movie.poster_path} alt="Movie image" />
+                    <img src={IMAGE_PATH + movie.poster_path} alt="Movie image" id='image'/>
+                    <img src={IMAGE_PATH + movie.poster_path} alt="Nothing" style={{display:'none'}} ref={image}/>
                 </div>
                 <div className="rightColumn">
                     <h2>{title} <span>{`(${year})`}</span></h2>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss'
 import MovieCard from './components/movie-card/MovieCard';
 import Newsletter from './components/newsletter/Newsletter';
+import { BiMoviePlay } from 'react-icons/bi'
 import { BsLinkedin, BsTwitter } from 'react-icons/bs'
 import TrendingDetails from './components/trending-details/TrendingDetails';
 import { Carousel } from 'react-responsive-carousel';
@@ -33,7 +34,10 @@ export default function App() {
   return (
     <div className="App">
       <header id='header'>
-        <span>Movies</span>
+        <div className="title">
+          <BiMoviePlay />
+          <span>React Movies</span>
+        </div>
 
         <ul>
           <a href='#header'>Home</a>
