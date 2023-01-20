@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "react-movies-36",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

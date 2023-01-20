@@ -23,8 +23,6 @@ export default function TrendingDetails({ movie }) {
                 // console.log(rgb)
                 // Later...
             })
-
-            console.log(image.current);
     }, [movie])
     
     const title = movie.title
