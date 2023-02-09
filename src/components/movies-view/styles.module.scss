@@ -1,0 +1,23 @@
+.movieView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 60px 120px 60px;
+    row-gap: 50px;
+    background-color: transparent;
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 80px;
+        row-gap: 100px;
+        width: 100%;
+    }
+}

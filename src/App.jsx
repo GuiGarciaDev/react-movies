@@ -7,29 +7,14 @@ import { BsLinkedin, BsTwitter } from 'react-icons/bs'
 import TrendingDetails from './components/trending-details/TrendingDetails';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import MovieView from './components/movies-view/MovieView';
+import { useQuery } from 'react-query';
 
 const API_KEY = import.meta.env.VITE_API_KEY
-const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500/'
 
 export default function App() {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [latestMovies, setLatestMovies] = useState([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState([{}]);
-
-  useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
-      .then(res => res.json())
-      .then(data => setPopularMovies(data.results))
-
-      fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
-      .then(res => res.json())
-      .then(data => setLatestMovies(data.results))
-
-      fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`)
-      .then(res => res.json())
-      .then(data => setNowPlayingMovies(data.results))
-
-  }, [])
+  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`
+  const { data, isLoading } = useQuery(['nowPlaying'], () => fetch(url).then(res => res.json()))
 
   return (
     <div className="App">
@@ -50,46 +35,29 @@ export default function App() {
         <h1>Now on theaters</h1>
         <div className="carousel-holder">
           <Carousel swipeable={true} width={'100%'} dynamicHeight={true} showThumbs={false} infiniteLoop={true}>
-            { nowPlayingMovies.map((movie, idx) => {
-              return (
-                <TrendingDetails movie={movie} key={idx}/>
-              )
-            })}
+            { !isLoading 
+                ? data.results.map((movie, idx) => {
+                  return (
+                    <TrendingDetails movie={movie} key={idx}/>
+                  )
+                })
+                : 'Loading...'
+            }
           </Carousel>
         </div>
       </section>
 
-      <section id='popular'>
-        <span className='title'>Popular</span>
-        <div className="popular-content">
-          { popularMovies.map((movie, idx) => {
-              return (
-                <MovieCard 
-                  title={movie.title} 
-                  src={IMAGE_PATH + movie.poster_path} 
-                  key={idx}
-                  movieId={movie.id}
-                />
-              )
-            })}
-        </div>
-      </section>
+      <MovieView 
+        text={'Popular'} 
+        fetchKey={'popular'} 
+        url={'https://api.themoviedb.org/3/movie/popular?api_key='} 
+      />
 
-      <section id='upcoming'>
-        <span className='title'>Upcoming</span>
-        <div className="upcoming-content">
-          { latestMovies.map((movie, idx) => {
-              return (
-                <MovieCard 
-                  title={movie.title} 
-                  src={IMAGE_PATH + movie.poster_path} 
-                  key={idx}
-                  movieId={movie.id}
-                />
-              )
-            })}
-        </div>
-      </section>
+      <MovieView 
+        text={'Upcoming'} 
+        fetchKey={'upcoming'} 
+        url={'https://api.themoviedb.org/3/movie/upcoming?api_key='} 
+      />
 
       <section id='newsletter'>
         <Newsletter />
