@@ -1,7 +1,11 @@
 .MoviePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    background-color: aqua;
-    color: white;
+    height: 100vh;
+    background-color: var(--blue);
+    color: var(--white);
 
     .movieDetails {
         min-height: 100vh;
